@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Materials</title>
+</head>
+<body>
+    <h1>All Materials</h1>
+    <ul>
+        {% for material in materials %}
+            <li>{{ material.name }} - {{ material.properties }} 
+                - <a href="{{ url_for('remove_material', id=material.id) }}">Remove</a></li>
+        {% endfor %}
+    </ul>
+    <a href="/">Back to Search</a>
+    <a href="/add">Add a Material</a>
+</body>
+</html>

@@ -38,6 +38,18 @@ def add_material():
 
     return render_template('add_material.html')
 
+@app.route('/materials')
+def list_materials():
+    materials = Material.query.all()
+    return render_template('list_materials.html', materials=materials)
+
+@app.route('/remove/<int:id>')
+def remove_material(id):
+    material_to_remove = Material.query.get_or_404(id)
+    db.session.delete(material_to_remove)
+    db.session.commit()
+    return redirect(url_for('list_materials'))
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
